@@ -41,4 +41,13 @@ public class Tile {
         this.plane = plane;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "x=" + x +
+                ", y=" + y +
+                ", plane=" + plane +
+                '}';
+    }
 }

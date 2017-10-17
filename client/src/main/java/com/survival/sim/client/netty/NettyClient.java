@@ -1,16 +1,9 @@
 package com.survival.sim.client.netty;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.SubscriberExceptionContext;
-import com.google.common.eventbus.SubscriberExceptionHandler;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.serialization.ObjectDecoder;
-import io.netty.handler.codec.serialization.ObjectEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +16,7 @@ public class NettyClient {
 
     private NioEventLoopGroup group = null;
 
-    private NettyClientHandler nettyClientHandler = new NettyClientHandler(this);
+    private NettyChannelHandler nettyChannelHandler = new NettyChannelHandler(this);
     private String host;
 
     public void start(String host) {
@@ -43,27 +36,17 @@ public class NettyClient {
         bootstrap.group(g)
                 .channel(NioSocketChannel.class)
                 .remoteAddress(host, 2052)
-                .handler(new ChannelInitializer<SocketChannel>() {
-                    @Override
-                    public void initChannel(SocketChannel channel) throws Exception {
-                        channel.pipeline().addLast(
-                                new ObjectDecoder(null),
-                                new ObjectEncoder(),
-
-                                nettyClientHandler
-                        );
-                    }
-                });
+                .handler(new NettyChannelInitializer(nettyChannelHandler));
 
 
         return bootstrap;
     }
 
     public void disconnect() {
-        nettyClientHandler.close();
+        nettyChannelHandler.close();
     }
 
     public boolean isConnected() {
-        return nettyClientHandler.isConnected();
+        return nettyChannelHandler.isConnected();
     }
 }

@@ -9,10 +9,9 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 /**
  * Created by Zach on 9/27/2017.
  */
-public class NettyInitHandler extends ChannelInitializer<SocketChannel> {
+public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-
         ChannelPipeline pipeline = socketChannel.pipeline();
 
         pipeline.addLast(

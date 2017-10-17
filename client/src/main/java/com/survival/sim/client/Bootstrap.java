@@ -10,7 +10,6 @@ public class Bootstrap {
     public static void main(String[] args) {
         NettyClient nettyClient = new NettyClient();
         nettyClient.start("localhost");
-
     }
 
 }

@@ -19,7 +19,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println(msg);
+
     }
 
     @Override
@@ -29,7 +29,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        logger.info("Client connected! {}", ctx.channel().remoteAddress());
+        logger.info("Channel active. {}", ctx.channel().remoteAddress());
     }
 
     @Override
@@ -39,12 +39,13 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-
+        logger.info("Channel unregistered. {}", ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
+        logger.error("Error during Netty execution. ", cause);
+        logger.debug("Error context. {}", ctx);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class NettyServer {
                 bootstrap.group(bossGroup, workerGroup)
                         .channel(NioServerSocketChannel.class)
                         .handler(new LoggingHandler(LogLevel.INFO))
-                        .childHandler(new NettyInitHandler());
+                        .childHandler(new NettyChannelInitializer());
 
                 bootstrap.bind(2052).sync().channel().closeFuture().sync();
             } catch (InterruptedException e) {

@@ -79,4 +79,16 @@ public class Player implements Locateable{
         this.speed = speed;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "uid='" + uid + '\'' +
+                ", name='" + name + '\'' +
+                ", location=" + location +
+                ", thirst=" + thirst +
+                ", hunger=" + hunger +
+                ", speed=" + speed +
+                '}';
+    }
 }

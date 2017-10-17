@@ -8,24 +8,24 @@ import io.netty.channel.EventLoop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Zach on 9/27/2017.
  */
 @ChannelHandler.Sharable
-public class NettyClientHandler extends ChannelInboundHandlerAdapter {
+public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
-    private static final Logger logger = LoggerFactory.getLogger(NettyClientHandler.class);
+    private static final int RECONNECT_DELAY = 5;
+
+    private static final Logger logger = LoggerFactory.getLogger(NettyChannelHandler.class);
 
     private NettyClient client;
     private ChannelHandlerContext context;
 
 
-    public NettyClientHandler(NettyClient nettyClient) {
-        this.client = nettyClient;
+    public NettyChannelHandler(NettyClient client) {
+        this.client = client;
     }
 
     @Override
@@ -47,33 +47,38 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-
+        logger.error("Error during Netty execution. ", cause);
+        logger.debug("Error context. {}", ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        scheduleReconnect(ctx);
+        logger.info("Channel active. {}", ctx);
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-
+        scheduleReconnect(ctx);
     }
 
     private void scheduleReconnect(final ChannelHandlerContext ctx){
-        final EventLoop loop = ctx.channel().eventLoop();
-        if (!loop.isShutdown() && !loop.isShuttingDown()){
-            loop.schedule(() -> {
-                logger.info("Starting reconnect.");
-                client.configureBootstrap(new Bootstrap(), loop).connect();
-            }, 5, TimeUnit.SECONDS);
-        }
+        EventLoop baseEventLoop = ctx.channel().eventLoop();
+        if (baseEventLoop.isShutdown() || baseEventLoop.isShuttingDown()) return;
+
+        baseEventLoop.schedule(() -> {
+            client.configureBootstrap(new Bootstrap(), baseEventLoop).connect();
+        }, RECONNECT_DELAY, TimeUnit.SECONDS);
+
+        logger.info("Scheduled reconnect with {} second delay.", RECONNECT_DELAY);
     }
 
 
     public void close() {
         try {
-            if (context != null) context.channel().disconnect();
+            if (context != null) {
+                logger.info("Disconnecting socket channel.");
+                context.channel().disconnect();
+            }
         }
         catch (Throwable e){
             logger.error("Error during closing.", e);
