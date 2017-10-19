@@ -9,6 +9,5 @@ public class Bootstrap {
 
     public static void main(String[] args) {
         NettyServer.start();
-        System.out.println("Test");
     }
 }
