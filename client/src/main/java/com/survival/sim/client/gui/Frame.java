@@ -1,9 +1,12 @@
 package com.survival.sim.client.gui;
 
+import com.survival.sim.client.game.Screen;
 import com.survival.sim.client.input.KeyInputHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Frame extends JFrame{
 
@@ -12,6 +15,12 @@ public class Frame extends JFrame{
     private static Frame instnace = new Frame();
 
     public Frame() throws HeadlessException {
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                Screen.setDimension(getSize());
+            }
+        });
         setContentPane(gamePanel);
         addKeyListener(new KeyInputHandler());
         setVisible(true);

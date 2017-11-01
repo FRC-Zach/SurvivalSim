@@ -1,5 +1,6 @@
 package com.survival.sim.common.entities;
 
+import com.survival.sim.client.game.Screen;
 import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locateable;
 import com.survival.sim.common.entities.interfaces.Renderable;
@@ -29,6 +30,6 @@ public class WorldTile extends Tile implements Renderable {
     public void render(Graphics2D graphics) {
         Point point = Projection.worldToScreen(this);
         graphics.setColor(color);
-        graphics.fillRect(point.x, point.y, 64, 64);
+        graphics.fillRect(point.x, point.y, Screen.getTileSize(), Screen.getTileSize());
     }
 }
