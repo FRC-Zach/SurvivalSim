@@ -21,9 +21,12 @@ public class WorldTile extends Tile implements Renderable {
 
     public WorldTile(int x, int y, int plane) {
         super(x, y, plane);
+        animationSequence.addSpritePath("Grass.png");
     }
 
+
     public List<Locateable> getEntities() {
+
         return entities;
     }
 

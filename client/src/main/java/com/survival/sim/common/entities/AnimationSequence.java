@@ -26,11 +26,11 @@ public class AnimationSequence {
         return tmp;
     }
 
-    public void addSpriteId(String spr){
+    public void addSpritePath(String spr){
         spritePaths.add(spr);
     }
 
-    public void addSpriteIds(ArrayList<String> sprites){
+    public void addSpritePaths(ArrayList<String> sprites){
         spritePaths.addAll(sprites);
     }
 }
