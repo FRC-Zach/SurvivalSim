@@ -17,6 +17,10 @@ public class Camera {
         Camera.cameraOffset = cameraOffset;
     }
 
+    public static Tile getCameraLocation(){
+        return cameraOffset;
+    }
+
     public static void centerOn(Locatable locateable) {
         Dimension dimension = Screen.getDimension();
 

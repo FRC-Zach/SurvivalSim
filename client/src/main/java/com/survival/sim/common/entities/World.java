@@ -18,7 +18,12 @@ public class World {
     }
 
     public WorldTile getTile(int x, int y, int plane){
-        return getTiles()[x][y][plane];
+
+        if (x >= 0 && y >= 0 && plane >= 0 && x < getTiles()[0].length && plane < getTiles().length && y < getTiles()[0][0].length) {
+            return getTiles()[plane][x][y];
+        } else {
+            return null;
+        }
     }
 
     public WorldTile[][][] getTiles() {
