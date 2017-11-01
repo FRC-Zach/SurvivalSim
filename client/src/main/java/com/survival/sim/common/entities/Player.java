@@ -1,10 +1,12 @@
 package com.survival.sim.common.entities;
 
+import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locateable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
 import java.awt.*;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Zach on 10/16/2017.
@@ -38,7 +40,9 @@ public class Player implements Locateable, Renderable {
 
     @Override
     public void render(Graphics2D graphics) {
-
+        Point point = Projection.worldToScreen(this);
+        graphics.setColor(new Color(ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255)));
+        graphics.fillOval(point.x, point.y, 64, 64);
     }
 
     public Player setUid(String uid) {

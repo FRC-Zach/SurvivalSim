@@ -1,17 +1,13 @@
 package com.survival.sim.client.gui;
 
-import com.survival.sim.client.game.Camera;
 import com.survival.sim.client.game.GameData;
 import com.survival.sim.client.game.LocalPlayer;
 import com.survival.sim.common.entities.WorldTile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel {
-
 
     public GamePanel() {
 
@@ -25,5 +21,7 @@ public class GamePanel extends JPanel {
                 tile.render((Graphics2D) g);
             }
         }
+
+        LocalPlayer.getLocalPlayer().render((Graphics2D) g);
     }
 }

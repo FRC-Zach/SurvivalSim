@@ -13,13 +13,13 @@ public class KeyInputHandler extends KeyAdapter {
             Camera.setCameraOffset(Camera.getCameraOffset().transform(-1, 0));
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP){
-            Camera.setCameraOffset(Camera.getCameraOffset().transform(0, 1));
+            Camera.setCameraOffset(Camera.getCameraOffset().transform(0, -1));
         }
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT){
             Camera.setCameraOffset(Camera.getCameraOffset().transform(1, 0));
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN){
-            Camera.setCameraOffset(Camera.getCameraOffset().transform(0, -1));
+            Camera.setCameraOffset(Camera.getCameraOffset().transform(0, 1));
         }
     }
 }
