@@ -17,8 +17,6 @@ public class NettyServer {
 
     public static void start()  {
         new Thread(() -> {
-
-
             try {
                 ServerBootstrap bootstrap = new ServerBootstrap();
 

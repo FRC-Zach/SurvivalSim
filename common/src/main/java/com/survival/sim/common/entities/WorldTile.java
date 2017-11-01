@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class WorldTile extends Tile {
 
-    private List<Locateable> entities = new ArrayList<Locateable>();
+    private List<Locateable> entities = new ArrayList<>();
 
     public WorldTile(int x, int y, int plane) {
         super(x, y, plane);
