@@ -9,6 +9,7 @@ public class Screen {
 
     public static void setDimension(Dimension dimension) {
         Screen.dimension = dimension;
+        tileSize = dimension.width / 16;
     }
 
     public static Dimension getDimension() {

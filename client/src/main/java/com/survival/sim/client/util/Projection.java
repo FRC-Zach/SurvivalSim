@@ -1,6 +1,7 @@
 package com.survival.sim.client.util;
 
 import com.survival.sim.client.game.Camera;
+import com.survival.sim.client.game.Screen;
 import com.survival.sim.common.entities.Tile;
 import com.survival.sim.common.entities.interfaces.Locatable;
 
@@ -15,7 +16,7 @@ public class Projection {
         int xDif = location.getX() - cameraOffset.getX();
         int yDif = location.getY() - cameraOffset.getY();
 
-        return new Point(xDif * 64, yDif * 64);
+        return new Point(xDif * Screen.getTileSize(), yDif * Screen.getTileSize());
     }
 
     public static Tile screenToWorld(Point point){

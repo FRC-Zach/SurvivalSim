@@ -1,5 +1,6 @@
 package com.survival.sim.common.entities;
 
+import com.survival.sim.client.game.Screen;
 import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locatable;
@@ -39,6 +40,6 @@ public class WorldTile extends Tile implements Renderable {
     @Override
     public void render(Graphics2D graphics) throws IOException {
         Point point = Projection.worldToScreen(this);
-        graphics.drawImage(SpriteCache.load(animationSequence.getNextSprite()), point.x, point.y, null);
+        graphics.drawImage(SpriteCache.load(animationSequence.getNextSprite()), point.x, point.y, Screen.getTileSize(), Screen.getTileSize(), null);
     }
 }
