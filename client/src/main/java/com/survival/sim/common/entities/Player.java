@@ -1,13 +1,18 @@
 package com.survival.sim.common.entities;
 
-import com.survival.sim.client.game.Screen;
+import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locateable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Zach on 10/16/2017.
@@ -30,7 +35,7 @@ public class Player implements Locateable, Renderable {
         this.thirst = 100;
         this.hunger = 100;
         this.location = new Tile(50, 50, 0);
-        animationSequence.addSpritePath("Player.png");
+        animationSequence.addSpritePath("imgs/Player.png");
     }
 
     public Tile getLocation() {
@@ -42,10 +47,9 @@ public class Player implements Locateable, Renderable {
     }
 
     @Override
-    public void render(Graphics2D graphics) {
+    public void render(Graphics2D graphics) throws IOException {
         Point point = Projection.worldToScreen(this);
-        graphics.setColor(new Color(ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255)));
-        graphics.fillOval(point.x, point.y, Screen.getTileSize(), Screen.getTileSize());
+        graphics.drawImage(SpriteCache.load(animationSequence.getNextSprite()), point.x, point.y, null);
     }
 
     public Player setUid(String uid) {

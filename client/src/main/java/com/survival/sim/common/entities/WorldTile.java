@@ -1,11 +1,15 @@
 package com.survival.sim.common.entities;
 
-import com.survival.sim.client.game.Screen;
+import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locateable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,9 +23,10 @@ public class WorldTile extends Tile implements Renderable {
     private List<Locateable> entities = new ArrayList<>();
     private AnimationSequence animationSequence = new AnimationSequence();
 
+
     public WorldTile(int x, int y, int plane) {
         super(x, y, plane);
-        animationSequence.addSpritePath("Grass.png");
+        animationSequence.addSpritePath("imgs/Grass.png");
     }
 
 
@@ -30,10 +35,10 @@ public class WorldTile extends Tile implements Renderable {
         return entities;
     }
 
+
     @Override
-    public void render(Graphics2D graphics) {
+    public void render(Graphics2D graphics) throws IOException {
         Point point = Projection.worldToScreen(this);
-        graphics.setColor(color);
-        graphics.fillRect(point.x, point.y, Screen.getTileSize(), Screen.getTileSize());
+        graphics.drawImage(SpriteCache.load(animationSequence.getNextSprite()), point.x, point.y, null);
     }
 }
