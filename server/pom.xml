@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.survival.sim</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -5,7 +5,7 @@ import com.survival.sim.common.entities.interfaces.Locateable;
 /**
  * Created by Zach on 10/16/2017.
  */
-public class Tile implements Locateable{
+public class Tile implements Locateable {
 
     private int x;
     private int y;
@@ -46,6 +46,10 @@ public class Tile implements Locateable{
     public Tile setPlane(int plane) {
         this.plane = plane;
         return this;
+    }
+
+    public Tile transform(int x, int y){
+        return new Tile(getX() + x, getY() + y, getPlane());
     }
 
     @Override

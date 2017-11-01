@@ -5,13 +5,13 @@ package com.survival.sim.common.entities;
  */
 public class World {
 
-    private WorldTile[][][] tiles = new WorldTile[400][400][1];
+    private WorldTile[][][] tiles = new WorldTile[1][400][400];
 
     public World() {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 for (int k = 0; k < tiles[i][j].length; k++) {
-                    tiles[i][j][k] = new WorldTile(i, j , k);
+                    tiles[i][j][k] = new WorldTile(j , k, i);
                 }
             }
         }

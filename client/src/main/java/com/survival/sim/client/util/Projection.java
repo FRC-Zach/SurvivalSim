@@ -10,8 +10,8 @@ public class Projection {
 
     public static Point worldToScreen(Locateable locateable){
         Tile cameraOffset = Camera.getCameraOffset();
-
         Tile location = locateable.getLocation();
+
         int xDif = location.getX() - cameraOffset.getX();
         int yDif = location.getY() - cameraOffset.getY();
 
