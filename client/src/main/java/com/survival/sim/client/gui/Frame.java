@@ -1,30 +1,25 @@
 package com.survival.sim.client.gui;
 
-import com.survival.sim.client.game.Camera;
+import com.survival.sim.client.input.KeyInputHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class Frame extends JFrame{
 
-
     private static GamePanel gamePanel = new GamePanel();
+
+    private static Frame instnace = new Frame();
 
     public Frame() throws HeadlessException {
         setContentPane(gamePanel);
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == 'a'){
-                    Camera.setCameraOffset(Camera.getCameraOffset().transform(-1, 0));
-                    repaint();
-                }
-            }
-        });
+        addKeyListener(new KeyInputHandler());
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(new Dimension(800, 600));
+    }
+
+    public static Frame getInstnace() {
+        return instnace;
     }
 }
