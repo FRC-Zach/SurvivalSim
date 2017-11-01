@@ -2,13 +2,13 @@ package com.survival.sim.client.util;
 
 import com.survival.sim.client.game.Camera;
 import com.survival.sim.common.entities.Tile;
-import com.survival.sim.common.entities.interfaces.Locateable;
+import com.survival.sim.common.entities.interfaces.Locatable;
 
 import java.awt.*;
 
 public class Projection {
 
-    public static Point worldToScreen(Locateable locateable){
+    public static Point worldToScreen(Locatable locateable){
         Tile cameraOffset = Camera.getCameraOffset();
         Tile location = locateable.getLocation();
 

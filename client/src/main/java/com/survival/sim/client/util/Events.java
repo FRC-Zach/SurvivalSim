@@ -17,7 +17,7 @@ public class Events {
     public static void start(){
         scheduledExecutorService.scheduleAtFixedRate(() -> {
             try {
-                Frame.getInstnace().repaint();
+                Frame.getInstance().repaint();
             }
             catch (Throwable e){
                 logger.error("Error during rendering.", e);

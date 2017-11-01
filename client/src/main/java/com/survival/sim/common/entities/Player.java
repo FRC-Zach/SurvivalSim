@@ -2,7 +2,7 @@ package com.survival.sim.common.entities;
 
 import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
-import com.survival.sim.common.entities.interfaces.Locateable;
+import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
 import javax.imageio.ImageIO;
@@ -17,7 +17,7 @@ import java.util.UUID;
 /**
  * Created by Zach on 10/16/2017.
  */
-public class Player implements Locateable, Renderable {
+public class Player implements Locatable, Renderable {
 
     private String uid = UUID.randomUUID().toString();
     private String name;

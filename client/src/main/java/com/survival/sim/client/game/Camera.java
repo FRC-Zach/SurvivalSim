@@ -1,8 +1,7 @@
 package com.survival.sim.client.game;
 
-import com.survival.sim.common.entities.Player;
 import com.survival.sim.common.entities.Tile;
-import com.survival.sim.common.entities.interfaces.Locateable;
+import com.survival.sim.common.entities.interfaces.Locatable;
 
 import java.awt.*;
 
@@ -18,7 +17,7 @@ public class Camera {
         Camera.cameraOffset = cameraOffset;
     }
 
-    public static void centerOn(Locateable locateable) {
+    public static void centerOn(Locatable locateable) {
         Dimension dimension = Screen.getDimension();
 
         int xOff = dimension.width / 2 / Screen.getTileSize();

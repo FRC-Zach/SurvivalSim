@@ -2,7 +2,7 @@ package com.survival.sim.common.entities;
 
 import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
-import com.survival.sim.common.entities.interfaces.Locateable;
+import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
 import javax.imageio.ImageIO;
@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class WorldTile extends Tile implements Renderable {
 
     private Color color = new Color(ThreadLocalRandom.current().nextInt(0, 20), ThreadLocalRandom.current().nextInt(0, 20), ThreadLocalRandom.current().nextInt(0, 255));
-    private List<Locateable> entities = new ArrayList<>();
+    private List<Locatable> entities = new ArrayList<>();
     private AnimationSequence animationSequence = new AnimationSequence();
 
 
@@ -30,7 +30,7 @@ public class WorldTile extends Tile implements Renderable {
     }
 
 
-    public List<Locateable> getEntities() {
+    public List<Locatable> getEntities() {
 
         return entities;
     }
