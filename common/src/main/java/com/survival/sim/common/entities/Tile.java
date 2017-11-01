@@ -17,6 +17,10 @@ public class Tile implements Locateable{
         this.plane = plane;
     }
 
+    public Tile() {
+
+    }
+
     public int getX() {
         return x;
     }

@@ -1,13 +1,15 @@
 package com.survival.sim.common.entities;
 
 import com.survival.sim.common.entities.interfaces.Locateable;
+import com.survival.sim.common.entities.interfaces.Renderable;
 
+import java.awt.*;
 import java.util.UUID;
 
 /**
  * Created by Zach on 10/16/2017.
  */
-public class Player implements Locateable {
+public class Player implements Locateable, Renderable {
 
     private String uid = UUID.randomUUID().toString();
     private String name;
@@ -32,6 +34,11 @@ public class Player implements Locateable {
 
     public String getUid() {
         return uid;
+    }
+
+    @Override
+    public void render(Graphics2D graphics) {
+
     }
 
     public Player setUid(String uid) {
