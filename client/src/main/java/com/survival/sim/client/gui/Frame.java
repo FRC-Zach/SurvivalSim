@@ -1,5 +1,7 @@
 package com.survival.sim.client.gui;
 
+import com.survival.sim.client.game.Camera;
+import com.survival.sim.client.game.LocalPlayer;
 import com.survival.sim.client.game.Screen;
 import com.survival.sim.client.input.KeyInputHandler;
 
@@ -19,6 +21,7 @@ public class Frame extends JFrame{
             @Override
             public void componentResized(ComponentEvent e) {
                 Screen.setDimension(getSize());
+                Camera.centerOn(LocalPlayer.getLocalPlayer());
             }
         });
         setContentPane(gamePanel);

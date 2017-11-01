@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class WorldTile extends Tile implements Renderable {
 
-    private Color color = new Color(ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255));
+    private Color color = new Color(ThreadLocalRandom.current().nextInt(0, 20), ThreadLocalRandom.current().nextInt(0, 20), ThreadLocalRandom.current().nextInt(0, 255));
     private List<Locateable> entities = new ArrayList<>();
     private AnimationSequence animationSequence = new AnimationSequence();
 

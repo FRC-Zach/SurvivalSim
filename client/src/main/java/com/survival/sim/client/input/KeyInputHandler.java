@@ -13,13 +13,13 @@ public class KeyInputHandler extends KeyAdapter {
         if (e.getKeyCode() == KeyEvent.VK_LEFT){
             movePlayer(-1, 0);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_UP){
+        if (e.getKeyCode() == KeyEvent.VK_UP){
             movePlayer(0, -1);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT){
             movePlayer(1, 0);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN){
+        if (e.getKeyCode() == KeyEvent.VK_DOWN){
             movePlayer(0, 1);
         }
 
