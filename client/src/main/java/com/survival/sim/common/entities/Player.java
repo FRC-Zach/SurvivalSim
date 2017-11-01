@@ -16,6 +16,7 @@ public class Player implements Locateable, Renderable {
 
     private String uid = UUID.randomUUID().toString();
     private String name;
+    private AnimationSequence animationSequence = new AnimationSequence();
 
     private Tile location;
 

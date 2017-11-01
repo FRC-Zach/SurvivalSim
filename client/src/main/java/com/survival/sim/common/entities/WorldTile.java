@@ -17,6 +17,7 @@ public class WorldTile extends Tile implements Renderable {
 
     private Color color = new Color(ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255), ThreadLocalRandom.current().nextInt(0, 255));
     private List<Locateable> entities = new ArrayList<>();
+    private AnimationSequence animationSequence = new AnimationSequence();
 
     public WorldTile(int x, int y, int plane) {
         super(x, y, plane);
