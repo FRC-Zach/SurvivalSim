@@ -14,7 +14,7 @@ public class Frame extends JFrame{
 
     private static GamePanel gamePanel = new GamePanel();
 
-    private static Frame instnace = new Frame();
+    private static Frame instance = new Frame();
 
     public Frame() throws HeadlessException {
         addComponentListener(new ComponentAdapter() {
@@ -31,7 +31,7 @@ public class Frame extends JFrame{
         setSize(new Dimension(800, 600));
     }
 
-    public static Frame getInstnace() {
-        return instnace;
+    public static Frame getInstance() {
+        return instance;
     }
 }
