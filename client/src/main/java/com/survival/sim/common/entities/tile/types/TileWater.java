@@ -13,7 +13,7 @@ public class TileWater extends WorldTile {
     private List<Locatable> entities = new ArrayList<>();
 
     public TileWater(int x, int y, int plane) {
-        super(x, y, plane);
+        super(x, y, plane, false);
         super.addSprite("imgs/Water.png");
     }
 }

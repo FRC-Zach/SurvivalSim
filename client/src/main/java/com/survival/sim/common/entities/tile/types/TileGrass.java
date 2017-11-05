@@ -12,7 +12,7 @@ public class TileGrass extends WorldTile {
     private List<Locatable> entities = new ArrayList<>();
 
     public TileGrass(int x, int y, int plane){
-        super(x, y, plane);
+        super(x, y, plane, true);
         super.addSprite("imgs/Grass.png");
     }
 }

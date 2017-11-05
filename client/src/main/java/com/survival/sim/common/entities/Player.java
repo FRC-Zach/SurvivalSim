@@ -1,5 +1,6 @@
 package com.survival.sim.common.entities;
 
+import com.survival.sim.client.game.GameData;
 import com.survival.sim.client.game.Screen;
 import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
@@ -45,6 +46,14 @@ public class Player implements Locatable, Renderable {
 
     public String getUid() {
         return uid;
+    }
+
+    public boolean movePlayer(int x, int y){
+        if (GameData.getWorld().getTile(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane()).getWalkable()){
+            setLocation(getLocation().transform(x, y));
+            return true;
+        }
+        return false;
     }
 
     @Override

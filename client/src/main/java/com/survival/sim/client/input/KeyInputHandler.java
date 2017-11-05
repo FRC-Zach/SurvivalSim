@@ -27,6 +27,6 @@ public class KeyInputHandler extends KeyAdapter {
     }
 
     private void movePlayer(int x, int y){
-        LocalPlayer.getLocalPlayer().setLocation(LocalPlayer.getLocalPlayer().getLocation().transform(x, y));
+        LocalPlayer.getLocalPlayer().movePlayer(x, y);
     }
 }

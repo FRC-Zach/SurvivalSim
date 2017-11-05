@@ -1,7 +1,6 @@
 package com.survival.sim.common.entities;
 
-import com.survival.sim.common.entities.tile.types.TileGrass;
-import com.survival.sim.common.entities.tile.types.TileWater;
+import com.survival.sim.common.entities.tile.types.*;
 
 /**
  * Created by Zach on 10/16/2017.
