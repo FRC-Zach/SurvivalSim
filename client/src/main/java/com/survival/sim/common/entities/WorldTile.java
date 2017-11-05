@@ -27,15 +27,16 @@ public class WorldTile extends Tile implements Renderable {
 
     public WorldTile(int x, int y, int plane) {
         super(x, y, plane);
-        animationSequence.addSpritePath("imgs/Grass.png");
+  //  animationSequence.addSpritePath("imgs/Grass.png");
     }
 
+    public void addSprite(String path){
+        animationSequence.addSpritePath(path);
+    }
 
     public List<Locatable> getEntities() {
-
         return entities;
     }
-
 
     @Override
     public void render(Graphics2D graphics) throws IOException {

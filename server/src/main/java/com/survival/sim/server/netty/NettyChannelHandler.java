@@ -19,7 +19,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-
+        logger.info(msg.toString());
     }
 
     @Override

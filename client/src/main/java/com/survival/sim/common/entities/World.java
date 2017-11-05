@@ -1,5 +1,8 @@
 package com.survival.sim.common.entities;
 
+import com.survival.sim.common.entities.tile.types.TileGrass;
+import com.survival.sim.common.entities.tile.types.TileWater;
+
 /**
  * Created by Zach on 10/16/2017.
  */
@@ -11,10 +14,12 @@ public class World {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 for (int k = 0; k < tiles[i][j].length; k++) {
-                    tiles[i][j][k] = new WorldTile(j , k, i);
+                    // i = plane, j = x, k = y
+                    tiles[i][j][k] = new TileGrass(j, k, i);
                 }
             }
         }
+        tiles[0][7][7] = new TileWater(7, 7, 0);
     }
 
     public WorldTile getTile(int x, int y, int plane){
