@@ -12,8 +12,8 @@ public class TileWater extends WorldTile {
     private AnimationSequence animationSequence = new AnimationSequence();
     private List<Locatable> entities = new ArrayList<>();
 
-    public TileWater(int plane, int x, int y) {
-        super(plane, x, y);
+    public TileWater(int x, int y, int plane) {
+        super(x, y, plane);
         super.addSprite("imgs/Water.png");
     }
 }

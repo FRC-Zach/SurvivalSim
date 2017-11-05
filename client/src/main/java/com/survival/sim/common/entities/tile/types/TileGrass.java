@@ -11,8 +11,8 @@ public class TileGrass extends WorldTile {
     private AnimationSequence animationSequence = new AnimationSequence();
     private List<Locatable> entities = new ArrayList<>();
 
-    public TileGrass(int plane, int x, int y){
-        super(plane, x, y);
+    public TileGrass(int x, int y, int plane){
+        super(x, y, plane);
         super.addSprite("imgs/Grass.png");
     }
 }
