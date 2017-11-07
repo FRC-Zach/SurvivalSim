@@ -1,8 +1,11 @@
 package com.survival.sim.client.netty;
 
+
+import com.google.gson.reflect.TypeToken;
 import com.survival.sim.client.game.LocalData;
 import com.survival.sim.client.game.LocalPlayer;
 import com.survival.sim.common.entities.World;
+import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.util.Json;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelHandler;
@@ -12,6 +15,8 @@ import io.netty.channel.EventLoop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -51,6 +56,11 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         if (messagePackage.getMessageType() == MessagePackage.Type.WORLD_UPDATE){
             World world = Json.getGson().fromJson(messagePackage.getBodyAs(String.class), World.class);
             LocalData.setWorld(world);
+        }
+
+        if (messagePackage.getMessageType() == MessagePackage.Type.ENTITY_UPDATE){
+            List<Locatable> entities = Json.getGson().fromJson(messagePackage.getBodyAs(String.class), new TypeToken<List<Locatable>>(){}.getType());
+            LocalData.getWorld().setEntities(entities);
         }
 
         if (messagePackage.getMessageType() == MessagePackage.Type.SET_PLAYER_UID){

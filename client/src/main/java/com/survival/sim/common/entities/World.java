@@ -37,6 +37,10 @@ public class World {
         }
     }
 
+    public void setEntities(List<Locatable> entities){
+        this.entities = entities;
+    }
+
     public WorldTile[][][] getTiles() {
         return tiles;
     }

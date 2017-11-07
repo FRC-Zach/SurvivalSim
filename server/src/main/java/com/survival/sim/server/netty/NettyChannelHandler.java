@@ -29,7 +29,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     private ChannelHandlerContext ctx;
 
 
-    public static void send(){
+    public static void sendWorld(){
         try {
             String s = Json.getGson().toJson(GameData.getWorld());
             MessagePackage messagePackage = new MessagePackage(MessagePackage.Type.WORLD_UPDATE, null).setBody(s);
@@ -46,6 +46,25 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
             logger.error("Error during sending game world.", e);
         }
     }
+
+    public static void sendEntities(){
+        try {
+            String s = Json.getGson().toJson(GameData.getWorld().getEntities());
+            MessagePackage messagePackage = new MessagePackage(MessagePackage.Type.ENTITY_UPDATE, null).setBody(s);
+            for (NettyChannelHandler nettyChannelHandler : Channels.getChannelHandlers()) {
+                try {
+                    nettyChannelHandler.send(messagePackage);
+                }
+                catch (Throwable e){
+                    logger.error("Error during sending game entities.", e);
+                }
+            }
+        }
+        catch (Throwable e){
+            logger.error("Error during sending game entities.", e);
+        }
+    }
+
 
     public ChannelHandlerContext getCtx() {
         return ctx;
@@ -64,7 +83,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
             int y = messagePackage.getBodyAs(1, Integer.class);
 
             player.movePlayer(x, y);
-            send();
+            sendEntities();
         }
     }
 
@@ -82,7 +101,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
         GameData.getWorld().getEntities().add(player);
         send(new MessagePackage(MessagePackage.Type.SET_PLAYER_UID, null).setBody(player.getUid()));
-        send();
+        sendWorld();
     }
 
     @Override

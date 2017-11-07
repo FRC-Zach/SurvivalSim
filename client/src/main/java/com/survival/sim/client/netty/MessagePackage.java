@@ -107,6 +107,6 @@ public class MessagePackage {
         int WORLD_UPDATE = 1;
         int SET_PLAYER_UID = 2;
         int MOVE = 3;
-
+        int ENTITY_UPDATE = 4;
     }
 }
