@@ -40,6 +40,9 @@ public class Player implements Locatable, Renderable {
         animationSequence.addSpritePath("imgs/Player.png");
     }
 
+    public Player() {
+    }
+
     public Tile getLocation() {
         return location;
     }

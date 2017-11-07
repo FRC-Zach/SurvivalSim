@@ -15,6 +15,7 @@ public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = socketChannel.pipeline();
 
         pipeline.addLast(
+
                 new ObjectEncoder(),
                 new ObjectDecoder(null),
 

@@ -30,6 +30,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         logger.info("Channel active. {}", ctx.channel().remoteAddress());
+        Channels.add(this);
     }
 
     @Override
@@ -40,6 +41,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         logger.info("Channel unregistered. {}", ctx);
+        Channels.remove(this);
     }
 
     @Override

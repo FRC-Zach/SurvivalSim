@@ -1,7 +1,7 @@
 package com.survival.sim.client.gui;
 
 import com.survival.sim.client.game.Camera;
-import com.survival.sim.client.game.GameData;
+import com.survival.sim.client.game.LocalData;
 import com.survival.sim.client.game.LocalPlayer;
 import com.survival.sim.common.entities.Tile;
 import com.survival.sim.common.entities.WorldTile;
@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
             Tile location = Camera.getCameraLocation();
             for (int y = location.getY() - verticalHeight; y < location.getY() + verticalHeight; y++){
                 for (int x = location.getX() - horizontalHeight; x < location.getX() + horizontalHeight; x++){
-                    WorldTile t = GameData.getWorld().getTile(x, y, LocalPlayer.getLocalPlayer().getLocation().getPlane());
+                    WorldTile t = LocalData.getWorld().getTile(x, y, LocalPlayer.getLocalPlayer().getLocation().getPlane());
                     if (t != null){
                         t.render((Graphics2D) g);
                     }

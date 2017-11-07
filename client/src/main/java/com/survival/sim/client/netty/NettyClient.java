@@ -14,10 +14,16 @@ public class NettyClient {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyClient.class);
 
+    private static final NettyClient instance = new NettyClient();
+
     private NioEventLoopGroup group = null;
 
     private NettyChannelHandler nettyChannelHandler = new NettyChannelHandler(this);
     private String host;
+
+    public static NettyClient getInstance() {
+        return instance;
+    }
 
     public void start(String host) {
         this.host = host;
@@ -37,7 +43,6 @@ public class NettyClient {
                 .channel(NioSocketChannel.class)
                 .remoteAddress(host, 2052)
                 .handler(new NettyChannelInitializer(nettyChannelHandler));
-
 
         return bootstrap;
     }

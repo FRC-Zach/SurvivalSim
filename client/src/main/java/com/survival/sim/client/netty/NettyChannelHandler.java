@@ -38,6 +38,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
 
+
     }
 
     @Override
@@ -71,7 +72,6 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
         logger.info("Scheduled reconnect with {} second delay.", RECONNECT_DELAY);
     }
-
 
     public void close() {
         try {

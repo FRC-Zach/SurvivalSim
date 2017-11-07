@@ -7,6 +7,7 @@ import com.survival.sim.common.entities.tile.types.*;
  */
 public class World {
 
+
     private WorldTile[][][] tiles = new WorldTile[1][400][400];
 
     public World() {
