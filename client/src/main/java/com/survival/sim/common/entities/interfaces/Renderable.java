@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.Serializable;
 
-public interface Renderable extends Serializable{
+public interface Renderable {
 
     void render(Graphics2D graphics) throws IOException;
 }

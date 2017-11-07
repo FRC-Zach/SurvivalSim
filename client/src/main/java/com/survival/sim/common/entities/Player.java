@@ -15,7 +15,7 @@ import java.util.UUID;
 /**
  * Created by Zach on 10/16/2017.
  */
-public class Player implements Locatable, Renderable, Serializable {
+public class Player implements Locatable, Renderable {
 
     private String uid = UUID.randomUUID().toString();
     private String name;

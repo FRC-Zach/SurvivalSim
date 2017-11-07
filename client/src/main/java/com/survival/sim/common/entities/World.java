@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Zach on 10/16/2017.
  */
-public class World implements Serializable{
+public class World {
 
 
     private WorldTile[][][] tiles = new WorldTile[1][400][400];
