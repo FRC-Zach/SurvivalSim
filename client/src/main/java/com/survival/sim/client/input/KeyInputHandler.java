@@ -2,6 +2,8 @@ package com.survival.sim.client.input;
 
 import com.survival.sim.client.game.Camera;
 import com.survival.sim.client.game.LocalPlayer;
+import com.survival.sim.client.netty.MessagePackage;
+import com.survival.sim.client.netty.NettyClient;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -27,6 +29,9 @@ public class KeyInputHandler extends KeyAdapter {
     }
 
     private void movePlayer(int x, int y){
-        LocalPlayer.getLocalPlayer().movePlayer(x, y);
+        MessagePackage messagePackage = new MessagePackage(MessagePackage.Type.MOVE, null)
+                .setBody(0, x)
+                .setBody(1, y);
+        NettyClient.getInstance().send(messagePackage);
     }
 }

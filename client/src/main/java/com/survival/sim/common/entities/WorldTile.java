@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by Zach on 10/16/2017.
  */
-public class WorldTile extends Tile implements Renderable, Serializable {
+public class WorldTile extends Tile implements Renderable {
 
     private AnimationSequence animationSequence = new AnimationSequence();
     private boolean walkable;

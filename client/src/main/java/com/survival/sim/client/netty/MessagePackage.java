@@ -19,14 +19,8 @@ public class MessagePackage {
 
     private static final Logger logger = LoggerFactory.getLogger(MessagePackage.class);
 
-    private LocalDateTime creationTimestamp = LocalDateTime.now();
-    private LocalDateTime insertTimestamp;
-
     private int messageType = Type.UNKNOWN;
 
-    private String secondaryType;
-
-    private String ownerID;
     private String destinationKey;
     private String sourceKey;
     private String responseToKey;
@@ -82,10 +76,6 @@ public class MessagePackage {
         return this;
     }
 
-    public LocalDateTime getInsertTimestamp() {
-        return insertTimestamp;
-    }
-
     public MessagePackage setBody(Object object) {
         return setBody(0, object);
     }
@@ -106,37 +96,17 @@ public class MessagePackage {
         return this;
     }
 
-    public String getOwnerID() {
-        return ownerID;
-    }
-
-    public MessagePackage setOwnerID(String ownerID) {
-        this.ownerID = ownerID;
-        return this;
-    }
-
-    public String getSecondaryType() {
-        return secondaryType;
-    }
-
-    public MessagePackage setSecondaryType(String secondaryType) {
-        this.secondaryType = secondaryType;
-        return this;
-    }
-
     public int getMessageType() {
         return messageType;
     }
 
-    public void setInsertTimestamp(LocalDateTime insertTimestamp) {
-        this.insertTimestamp = insertTimestamp;
-    }
 
 
     public interface Type {
         int UNKNOWN = 0;
         int WORLD_UPDATE = 1;
         int SET_PLAYER_UID = 2;
+        int MOVE = 3;
 
     }
 }

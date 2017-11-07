@@ -2,8 +2,6 @@ package com.survival.sim.common.entities.tile.types;
 
 import com.survival.sim.common.entities.WorldTile;
 
-import java.io.Serializable;
-
 public class TileGrass extends WorldTile {
 
     public TileGrass(int x, int y, int plane){

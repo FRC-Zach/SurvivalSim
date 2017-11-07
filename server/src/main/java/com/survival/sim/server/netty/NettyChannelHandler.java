@@ -28,26 +28,23 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     private ChannelHandlerContext ctx;
 
-    public static void init(){
-        scheduledExecutorService.scheduleWithFixedDelay(() -> {
-            try {
-                String s = Json.getGson().toJson(GameData.getWorld());
-                MessagePackage messagePackage = new MessagePackage(MessagePackage.Type.WORLD_UPDATE, null).setBody(s);
-                for (NettyChannelHandler nettyChannelHandler : Channels.getChannelHandlers()) {
-                    try {
-                        nettyChannelHandler.send(messagePackage);
-                    }
-                    catch (Throwable e){
-                        logger.error("Error during sending game world.", e);
-                    }
+
+    public static void send(){
+        try {
+            String s = Json.getGson().toJson(GameData.getWorld());
+            MessagePackage messagePackage = new MessagePackage(MessagePackage.Type.WORLD_UPDATE, null).setBody(s);
+            for (NettyChannelHandler nettyChannelHandler : Channels.getChannelHandlers()) {
+                try {
+                    nettyChannelHandler.send(messagePackage);
+                }
+                catch (Throwable e){
+                    logger.error("Error during sending game world.", e);
                 }
             }
-            catch (Throwable e){
-                logger.error("Error during sending game world.", e);
-            }
-
-        }, 100,100, TimeUnit.MILLISECONDS);
-        System.out.println();
+        }
+        catch (Throwable e){
+            logger.error("Error during sending game world.", e);
+        }
     }
 
     public ChannelHandlerContext getCtx() {
@@ -60,7 +57,15 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.info(msg.toString());
+        MessagePackage messagePackage = Json.getGson().fromJson((String) msg, MessagePackage.class);
+
+        if (messagePackage.getMessageType() == MessagePackage.Type.MOVE){
+            int x = messagePackage.getBodyAs(0, Integer.class);
+            int y = messagePackage.getBodyAs(1, Integer.class);
+
+            player.movePlayer(x, y);
+            send();
+        }
     }
 
     @Override
@@ -73,10 +78,11 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         this.ctx = ctx;
         logger.info("Channel active. {}", ctx.channel().remoteAddress());
         Channels.add(this);
-        player.setLocation(new Tile(50, 50, 0 ));
+        player.setLocation(new Tile(4 + ThreadLocalRandom.current().nextInt(-2, 2), 5 + ThreadLocalRandom.current().nextInt(-2, 2), 0 ));
 
         GameData.getWorld().getEntities().add(player);
         send(new MessagePackage(MessagePackage.Type.SET_PLAYER_UID, null).setBody(player.getUid()));
+        send();
     }
 
     @Override

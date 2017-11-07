@@ -4,7 +4,7 @@ import com.survival.sim.common.entities.World;
 
 public class LocalData {
 
-    private static World world = new World();
+    private static World world;
 
     public static World getWorld() {
         return world;

@@ -74,6 +74,10 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         scheduleReconnect(ctx);
     }
 
+    public ChannelHandlerContext getContext() {
+        return context;
+    }
+
     private void scheduleReconnect(final ChannelHandlerContext ctx){
         EventLoop baseEventLoop = ctx.channel().eventLoop();
         if (baseEventLoop.isShutdown() || baseEventLoop.isShuttingDown()) return;

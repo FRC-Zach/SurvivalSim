@@ -5,8 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import com.survival.sim.common.entities.Player;
+import com.survival.sim.common.entities.Tile;
 import com.survival.sim.common.entities.World;
+import com.survival.sim.common.entities.WorldTile;
 import com.survival.sim.common.entities.interfaces.Locatable;
+import com.survival.sim.common.entities.tile.types.TileGrass;
+import com.survival.sim.common.entities.tile.types.TileWater;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,11 @@ public class Json {
     static {
         final RuntimeTypeAdapterFactory<Locatable> typeFactory = RuntimeTypeAdapterFactory
                 .of(Locatable.class, "type")
-                .registerSubtype(Player.class);
+                .registerSubtype(Player.class)
+                .registerSubtype(Tile.class)
+                .registerSubtype(WorldTile.class)
+                .registerSubtype(TileGrass.class)
+                .registerSubtype(TileWater.class);
 
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(typeFactory)
@@ -28,21 +36,4 @@ public class Json {
     public static Gson getGson() {
         return gson;
     }
-
-
-    public static void main(String[] args) {
-        List<Locatable> locatables = new ArrayList<>();
-        locatables.add(new Player("asdasd"));
-
-
-        World world = new World();
-        world.getEntities().add(new Player("asdasd"));
-
-        String s = getGson().toJson(world);
-        World world1 = getGson().fromJson(s, World.class);
-        System.out.println();
-
-
-    }
-
 }

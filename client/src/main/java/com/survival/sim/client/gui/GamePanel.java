@@ -28,6 +28,7 @@ public class GamePanel extends JPanel {
     public void paint(Graphics g) {
         try{
             Camera.centerOn(LocalPlayer.getLocalPlayer());
+
             Tile location = Camera.getCameraLocation();
             if (location == null) return;
 

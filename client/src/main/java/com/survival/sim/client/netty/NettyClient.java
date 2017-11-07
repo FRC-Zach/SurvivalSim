@@ -1,5 +1,6 @@
 package com.survival.sim.client.netty;
 
+import com.survival.sim.common.util.Json;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -23,6 +24,10 @@ public class NettyClient {
 
     public static NettyClient getInstance() {
         return instance;
+    }
+
+    public void send(MessagePackage messagePackage){
+        nettyChannelHandler.getContext().writeAndFlush(Json.getGson().toJson(messagePackage));
     }
 
     public void start(String host) {
