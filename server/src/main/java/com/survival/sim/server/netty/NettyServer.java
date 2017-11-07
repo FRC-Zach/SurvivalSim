@@ -20,6 +20,8 @@ public class NettyServer {
             try {
                 ServerBootstrap bootstrap = new ServerBootstrap();
 
+
+
                 bootstrap.group(bossGroup, workerGroup)
                         .channel(NioServerSocketChannel.class)
                         .handler(new LoggingHandler(LogLevel.INFO))

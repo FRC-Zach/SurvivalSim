@@ -17,7 +17,7 @@ public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(
 
                 new ObjectEncoder(),
-                new ObjectDecoder(null),
+                new ObjectDecoder(Integer.MAX_VALUE,null),
 
                 new NettyChannelHandler()
         );

@@ -2,10 +2,12 @@ package com.survival.sim.common.entities;
 
 import com.survival.sim.common.entities.interfaces.Locatable;
 
+import java.io.Serializable;
+
 /**
  * Created by Zach on 10/16/2017.
  */
-public class Tile implements Locatable {
+public class Tile implements Locatable, Serializable {
 
     private int x;
     private int y;

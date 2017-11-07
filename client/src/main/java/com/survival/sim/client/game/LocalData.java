@@ -9,4 +9,8 @@ public class LocalData {
     public static World getWorld() {
         return world;
     }
+
+    public static void setWorld(World world) {
+        LocalData.world = world;
+    }
 }

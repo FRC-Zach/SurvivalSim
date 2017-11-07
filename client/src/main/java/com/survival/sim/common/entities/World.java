@@ -1,14 +1,20 @@
 package com.survival.sim.common.entities;
 
+import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.tile.types.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zach on 10/16/2017.
  */
-public class World {
+public class World implements Serializable{
 
 
     private WorldTile[][][] tiles = new WorldTile[1][400][400];
+    private List<Locatable> entities = new ArrayList<>();
 
     public World() {
         for (int i = 0; i < tiles.length; i++) {
@@ -33,5 +39,9 @@ public class World {
 
     public WorldTile[][][] getTiles() {
         return tiles;
+    }
+
+    public List<Locatable> getEntities() {
+        return entities;
     }
 }

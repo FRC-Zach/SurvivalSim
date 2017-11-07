@@ -1,5 +1,9 @@
 package com.survival.sim.client.netty;
 
+import com.survival.sim.client.game.LocalData;
+import com.survival.sim.client.game.LocalPlayer;
+import com.survival.sim.common.entities.World;
+import com.survival.sim.common.util.Json;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -32,7 +36,6 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         context = ctx;
         logger.info("Connected!");
-        ctx.channel().writeAndFlush("Hi Server!");
     }
 
     @Override
@@ -43,7 +46,16 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        MessagePackage messagePackage = Json.getGson().fromJson((String) msg, MessagePackage.class);
 
+        if (messagePackage.getMessageType() == MessagePackage.Type.WORLD_UPDATE){
+            World world = Json.getGson().fromJson(messagePackage.getBodyAs(String.class), World.class);
+            LocalData.setWorld(world);
+        }
+
+        if (messagePackage.getMessageType() == MessagePackage.Type.SET_PLAYER_UID){
+            LocalPlayer.setUID(messagePackage.getBodyAs(String.class));
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.survival.sim.server;
 
+import com.survival.sim.server.netty.NettyChannelHandler;
 import com.survival.sim.server.netty.NettyServer;
 
 import java.util.ArrayList;
@@ -13,5 +14,6 @@ public class Bootstrap {
 
     public static void main(String[] args) {
         NettyServer.start();
+        NettyChannelHandler.init();
     }
 }

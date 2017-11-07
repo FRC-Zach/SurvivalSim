@@ -1,25 +1,21 @@
 package com.survival.sim.common.entities;
 
-import com.survival.sim.client.game.GameData;
+import com.survival.sim.client.game.LocalData;
 import com.survival.sim.client.game.Screen;
 import com.survival.sim.client.gui.SpriteCache;
 import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by Zach on 10/16/2017.
  */
-public class Player implements Locatable, Renderable {
+public class Player implements Locatable, Renderable, Serializable {
 
     private String uid = UUID.randomUUID().toString();
     private String name;
@@ -52,7 +48,7 @@ public class Player implements Locatable, Renderable {
     }
 
     public boolean movePlayer(int x, int y){
-        if (GameData.getWorld().getTile(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane()).getWalkable()){
+        if (LocalData.getWorld().getTile(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane()).getWalkable()){
             setLocation(getLocation().transform(x, y));
             return true;
         }

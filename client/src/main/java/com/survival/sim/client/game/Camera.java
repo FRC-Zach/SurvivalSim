@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Camera {
 
-    private static Tile cameraOffset = LocalPlayer.getLocalPlayer().getLocation().transform(-16, -16);
+    private static Tile cameraOffset = null;
 
     public static Tile getCameraOffset() {
         return cameraOffset;
@@ -22,6 +22,8 @@ public class Camera {
     }
 
     public static void centerOn(Locatable locateable) {
+        if (locateable == null) return;
+
         Dimension dimension = Screen.getDimension();
 
         int xOff = dimension.width / 2 / Screen.getTileSize();

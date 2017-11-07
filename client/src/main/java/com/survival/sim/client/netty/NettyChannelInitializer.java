@@ -19,7 +19,7 @@ public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     public void initChannel(SocketChannel channel) throws Exception {
         channel.pipeline().addLast(
-                new ObjectDecoder(null),
+                new ObjectDecoder(Integer.MAX_VALUE,null),
                 new ObjectEncoder(),
                 nettyChannelHandler
         );

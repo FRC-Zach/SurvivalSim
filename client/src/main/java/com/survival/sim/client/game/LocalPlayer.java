@@ -4,9 +4,13 @@ import com.survival.sim.common.entities.Player;
 
 public class LocalPlayer {
 
-    private static Player localPlayer = new Player("Test");
+    private static String uid;
 
     public static Player getLocalPlayer() {
-        return localPlayer;
+        return (Player) LocalData.getWorld().getEntities().stream().filter(locatable -> locatable instanceof Player && ((Player) locatable).getUid().equals(uid)).findAny().orElse(null);
+    }
+
+    public static void setUID(String uid) {
+        LocalPlayer.uid = uid;
     }
 }
