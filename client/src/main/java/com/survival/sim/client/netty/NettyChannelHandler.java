@@ -59,7 +59,10 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         }
 
         if (messagePackage.getMessageType() == MessagePackage.Type.ENTITY_UPDATE){
-            List<Locatable> entities = Json.getGson().fromJson(messagePackage.getBodyAs(String.class), new TypeToken<List<Locatable>>(){}.getType());
+
+            final TypeToken<List<Locatable>> requestListTypeToken = new TypeToken<List<Locatable>>(){};
+
+            List<Locatable> entities = Json.getGson().fromJson(messagePackage.getBodyAs(String.class), requestListTypeToken.getType());
             LocalData.getWorld().setEntities(entities);
         }
 
