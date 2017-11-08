@@ -13,7 +13,7 @@ import java.util.List;
 public class World {
 
 
-    private WorldTile[][][] tiles = new WorldTile[1][10][10];
+    private WorldTile[][][] tiles = new WorldTile[1][400][400];
     private List<Locatable> entities = new ArrayList<>();
 
     public World() {
