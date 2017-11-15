@@ -7,8 +7,8 @@ import com.survival.sim.common.entities.Player;
 import com.survival.sim.common.entities.Tile;
 import com.survival.sim.common.entities.WorldObject;
 import com.survival.sim.common.entities.interfaces.Locatable;
-import com.survival.sim.common.entities.tile.types.ObjectGrass;
-import com.survival.sim.common.entities.tile.types.ObjectWater;
+import com.survival.sim.common.entities.tile.types.TileGrass;
+import com.survival.sim.common.entities.tile.types.TileWater;
 
 public class Json {
 
@@ -20,8 +20,8 @@ public class Json {
                 .registerSubtype(Player.class)
                 .registerSubtype(Tile.class)
                 .registerSubtype(WorldObject.class)
-                .registerSubtype(ObjectGrass.class)
-                .registerSubtype(ObjectWater.class);
+                .registerSubtype(TileGrass.class)
+                .registerSubtype(TileWater.class);
 
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(typeFactory)

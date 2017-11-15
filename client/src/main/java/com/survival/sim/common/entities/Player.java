@@ -47,12 +47,11 @@ public class Player implements Locatable, Renderable {
         return uid;
     }
 
-    public boolean movePlayer(int x, int y){
-        /*if (GameData.getWorld().getTile(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane()).getWalkable()){
+    public boolean movePlayer(int x, int y, World world){
+        if (world.getTile(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane()).getWalkable()){
             setLocation(getLocation().transform(x, y));
             return true;
-        }*/
-        setLocation(getLocation().transform(x, y));
+        }
         return false;
     }
 

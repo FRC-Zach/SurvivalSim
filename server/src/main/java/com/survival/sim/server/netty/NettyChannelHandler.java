@@ -87,7 +87,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
             int x = messagePackage.getBodyAs(0, Integer.class);
             int y = messagePackage.getBodyAs(1, Integer.class);
 
-            player.movePlayer(x, y);
+            player.movePlayer(x, y, GameData.getWorld());
             sendEntities();
         }
     }
