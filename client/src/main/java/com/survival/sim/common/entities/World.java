@@ -3,7 +3,6 @@ package com.survival.sim.common.entities;
 import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.tile.types.*;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 public class World {
 
 
-    private WorldTile[][][] tiles = new WorldTile[1][10][10];
+    private WorldObject[][][] tiles = new WorldObject[1][10][10];
     private List<Locatable> entities = new ArrayList<>();
 
     public World() {
@@ -21,14 +20,14 @@ public class World {
             for (int j = 0; j < tiles[i].length; j++) {
                 for (int k = 0; k < tiles[i][j].length; k++) {
                     // i = plane, j = x, k = y
-                    tiles[i][j][k] = new TileGrass(j, k, i);
+                    tiles[i][j][k] = new ObjectGrass(j, k, i);
                 }
             }
         }
-        tiles[0][7][7] = new TileWater(7, 7, 0);
+        tiles[0][7][7] = new ObjectWater(7, 7, 0);
     }
 
-    public WorldTile getTile(int x, int y, int plane){
+    public WorldObject getTile(int x, int y, int plane){
 
         if (x >= 0 && y >= 0 && plane >= 0 && x < getTiles()[0].length && plane < getTiles().length && y < getTiles()[0][0].length) {
             return getTiles()[plane][x][y];
@@ -41,7 +40,7 @@ public class World {
         this.entities = entities;
     }
 
-    public WorldTile[][][] getTiles() {
+    public WorldObject[][][] getTiles() {
         return tiles;
     }
 
