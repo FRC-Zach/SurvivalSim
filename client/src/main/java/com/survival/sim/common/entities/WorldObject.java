@@ -16,17 +16,17 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by Zach on 10/16/2017.
  */
-public class WorldTile extends Tile implements Renderable {
+public class WorldObject extends Tile implements Renderable {
 
     private AnimationSequence animationSequence = new AnimationSequence();
     private boolean walkable;
 
-    public WorldTile(int x, int y, int plane, boolean walkable) {
+    public WorldObject(int x, int y, int plane, boolean walkable) {
         super(x, y, plane);
         this.walkable = walkable;
     }
 
-    public WorldTile() {
+    public WorldObject() {
     }
 
     public boolean getWalkable(){
