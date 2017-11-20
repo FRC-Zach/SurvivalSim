@@ -1,10 +1,10 @@
 package com.survival.sim.server;
 
-import com.survival.sim.server.netty.NettyChannelHandler;
-import com.survival.sim.server.netty.NettyServer;
+        import com.survival.sim.server.netty.NettyChannelHandler;
+        import com.survival.sim.server.netty.NettyServer;
 
-import java.util.ArrayList;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.List;
 
 /**
  * Created by Zach on 10/16/2017.
