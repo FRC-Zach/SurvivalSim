@@ -7,7 +7,9 @@ public class LocalPlayer {
     private static String uid;
 
     public static Player getLocalPlayer() {
-        return (Player) LocalData.getWorld().getEntities().stream().filter(locatable -> locatable instanceof Player && ((Player) locatable).getUid().equals(uid)).findAny().orElse(null);
+        if (LocalData.getWorld() != null)
+            return (Player) LocalData.getWorld().getEntities().stream().filter(locatable -> locatable instanceof Player && ((Player) locatable).getUid().equals(uid)).findAny().orElse(null);
+        return null;
     }
 
     public static void setUID(String uid) {
