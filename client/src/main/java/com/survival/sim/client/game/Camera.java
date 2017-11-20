@@ -21,6 +21,10 @@ public class Camera {
         return cameraOffset;
     }
 
+    /**
+     * Centers the tile on the location.
+     * @param locateable
+     */
     public static void centerOn(Locatable locateable) {
         if (locateable == null) return;
 

@@ -9,6 +9,11 @@ import java.awt.*;
 
 public class Projection {
 
+    /***
+     *
+     * @param locateable locateable from world
+     * @return Point on screen from player perspective.
+     */
     public static Point worldToScreen(Locatable locateable){
         Tile cameraOffset = Camera.getCameraOffset();
         Tile location = locateable.getLocation();

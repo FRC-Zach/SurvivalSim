@@ -6,7 +6,7 @@ public class ObjectWater extends WorldObject {
 
     public ObjectWater(int x, int y, int plane) {
         super(x, y, plane, false);
-        super.addSprite("imgs/Water.png");
+        addSprite("imgs/Water.png");
     }
 
     public ObjectWater() {

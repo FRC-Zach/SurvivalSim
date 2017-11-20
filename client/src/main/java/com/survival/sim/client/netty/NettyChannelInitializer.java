@@ -16,6 +16,11 @@ public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
         this.nettyChannelHandler = nettyChannelHandler;
     }
 
+    /**
+     * Inits the channel pipeline.
+     * @param channel current channel
+     * @throws Exception
+     */
     @Override
     public void initChannel(SocketChannel channel) throws Exception {
         channel.pipeline().addLast(

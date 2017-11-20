@@ -24,6 +24,10 @@ public class GamePanel extends JPanel {
 
     }
 
+    /**
+     * Pains the world
+     * @param g
+     */
     @Override
     public void paint(Graphics g) {
         try{

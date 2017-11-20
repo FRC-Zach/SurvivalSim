@@ -7,6 +7,10 @@ import com.survival.sim.common.entities.Tile;
  */
 public interface Locatable {
 
+    /***
+     *
+     * @return current tile position.
+     */
     Tile getLocation();
 
 }

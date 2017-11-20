@@ -16,6 +16,10 @@ public class Frame extends JFrame{
 
     private static Frame instance = new Frame();
 
+    /**
+     * Inits the frame
+     * @throws HeadlessException
+     */
     public Frame() throws HeadlessException {
         addComponentListener(new ComponentAdapter() {
             @Override

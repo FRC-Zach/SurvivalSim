@@ -31,6 +31,11 @@ public class MessagePackage {
     public MessagePackage() {
     }
 
+    /***
+     *
+     * @param messageType type of message
+     * @param destinationKey destination target
+     */
     public MessagePackage(int messageType, String destinationKey) {
         this.destinationKey = destinationKey;
         this.messageType = messageType;
@@ -40,6 +45,11 @@ public class MessagePackage {
         return destinationKey;
     }
 
+    /***
+     *
+     * @param tClass type to return as
+     * @return body index 0 as type tClass
+     */
     public <T> T getBodyAs(Class<T> tClass) {
         return getBodyAs(0, tClass);
     }
@@ -76,10 +86,21 @@ public class MessagePackage {
         return this;
     }
 
+    /**
+     *
+     * @param object object to set
+     * @return this
+     */
     public MessagePackage setBody(Object object) {
         return setBody(0, object);
     }
 
+    /***
+     *
+     * @param index index to set
+     * @param object object to set
+     * @return this
+     */
     public MessagePackage setBody(int index, Object object) {
         if (object == null) return this;
         bodyJSON.put(index, Json.getGson().toJson(object));
@@ -100,8 +121,9 @@ public class MessagePackage {
         return messageType;
     }
 
-
-
+    /***
+     * Types of packets
+     */
     public interface Type {
         int UNKNOWN = 0;
         int WORLD_UPDATE = 1;

@@ -6,5 +6,10 @@ import java.io.Serializable;
 
 public interface Renderable {
 
+    /***
+     *
+     * @param graphics current panel graphics object.
+     * @throws IOException
+     */
     void render(Graphics2D graphics) throws IOException;
 }

@@ -6,7 +6,7 @@ public class TileGrass extends WorldObject {
 
     public TileGrass(int x, int y, int plane){
         super(x, y, plane, true);
-        super.addSprite("imgs/Grass.png");
+        addSprite("imgs/Grass.png");
     }
 
     public TileGrass() {
