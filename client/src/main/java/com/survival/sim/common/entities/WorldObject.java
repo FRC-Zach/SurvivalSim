@@ -33,10 +33,20 @@ public class WorldObject extends Tile implements Renderable {
         return walkable;
     }
 
+
+    /***
+     * Adds a spite to the @{@link AnimationSequence}.
+     * @param path image path.
+     */
     public void addSprite(String path){
         animationSequence.addSpritePath(path);
     }
 
+    /**
+     * Renders the @{@link WorldObject} onto the canvas.
+     * @param graphics current panel graphics
+     * @throws IOException
+     */
     @Override
     public void render(Graphics2D graphics) throws IOException {
         Point point = Projection.worldToScreen(this);

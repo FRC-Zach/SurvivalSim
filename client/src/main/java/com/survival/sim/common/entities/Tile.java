@@ -50,6 +50,12 @@ public class Tile implements Locatable, Serializable {
         return this;
     }
 
+    /**
+     *
+     * @param x x
+     * @param y y
+     * @return a new @{@link Tile} transformed from the current cords.
+     */
     public Tile transform(int x, int y){
         return new Tile(getX() + x, getY() + y, getPlane());
     }

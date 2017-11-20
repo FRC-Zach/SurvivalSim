@@ -18,7 +18,5 @@ public class Entity extends WorldObject{
         this.health = health;
         return this;
     }
-
-
 }
 

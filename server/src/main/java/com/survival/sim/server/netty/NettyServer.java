@@ -15,6 +15,9 @@ public class NettyServer {
     private static final EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private static final EventLoopGroup workerGroup = new NioEventLoopGroup();
 
+    /***
+     * Starts the server on a new thread.
+     */
     public static void start()  {
         new Thread(() -> {
             try {
@@ -38,6 +41,9 @@ public class NettyServer {
         }).start();
     }
 
+    /***
+     * Stops the server.
+     */
     public static void stop() {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
