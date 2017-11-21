@@ -27,6 +27,7 @@ public class WorldObject extends Tile implements Renderable {
     }
 
     public WorldObject() {
+
     }
 
     public boolean getWalkable(){

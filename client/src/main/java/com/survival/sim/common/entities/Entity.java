@@ -11,7 +11,6 @@ public class Entity extends WorldObject{
     public Entity(int x, int y, int plane, boolean walkable, int health){
         super(x, y, plane, walkable);
         this.health = health;
-
     }
 
     public Entity setHealth(int health){
@@ -19,6 +18,11 @@ public class Entity extends WorldObject{
         return this;
     }
 
+    public void damage(int hp){
+        health -= hp;
+        if (health < 0){
 
+        }
+    }
 }
 

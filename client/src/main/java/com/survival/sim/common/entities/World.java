@@ -5,6 +5,7 @@ import com.survival.sim.common.entities.tile.types.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Zach on 10/16/2017.
@@ -12,7 +13,7 @@ import java.util.List;
 public class World {
 
 
-    private WorldObject[][][] tiles = new WorldObject[1][400][400];
+    private WorldObject[][][] tiles = new WorldObject[1][200][200];
     private List<Locatable> entities = new ArrayList<>();
 
     public World() {
@@ -24,7 +25,49 @@ public class World {
                 }
             }
         }
-        tiles[0][7][7] = new TileWater(7, 7, 0);
+
+        Random r = new Random();
+
+        for (int i = 0; i < 50; i++){
+            int size = r.nextInt(10);
+            int xPos = r.nextInt(180 - size);
+            int yPos = r.nextInt(180 - size);
+            xPos += size;
+            yPos += size;
+            for (int x = xPos - size; x < xPos + size; x++){
+                for (int y = yPos - size; y < yPos + size; y++){
+                    if (Math.sqrt(Math.pow(Math.abs(x - xPos), 2) + (Math.pow(Math.abs(y - yPos), 2))) < size) {
+                        tiles[0][x][y] = new TileWater(x, y, 0);
+                    }
+                }
+            }
+        }
+
+        /* Create trees */
+        for (int i = 0; i < 2000; i++){
+            int xPos = r.nextInt(200);
+            int yPos = r.nextInt(200);
+            if (!(tiles[0][xPos][yPos] instanceof TileWater)) {
+                entities.add(new TreeEntity(xPos, yPos, 0, false, 100));
+            }
+        }
+        System.out.println("Done creating the world..");
+    }
+
+    public List<Locatable> getEntities(int x, int y, int plane){
+        List<Locatable> tmp = new ArrayList<>();
+        for (Locatable l : entities){
+            Tile location = l.getLocation();
+            if (location.getX() == x && location.getY() == y && location.getPlane() == plane){
+                tmp.add(l);
+            }
+        }
+        return tmp;
+    }
+
+    public void DestroyEntity(Entity e){
+        entities.remove(e);
+        e = null;
     }
 
     public WorldObject getTile(int x, int y, int plane){

@@ -3,9 +3,7 @@ package com.survival.sim.common.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import com.survival.sim.common.entities.Player;
-import com.survival.sim.common.entities.Tile;
-import com.survival.sim.common.entities.WorldObject;
+import com.survival.sim.common.entities.*;
 import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.tile.types.TileGrass;
 import com.survival.sim.common.entities.tile.types.TileWater;
@@ -21,7 +19,10 @@ public class Json {
                 .registerSubtype(Tile.class)
                 .registerSubtype(WorldObject.class)
                 .registerSubtype(TileGrass.class)
-                .registerSubtype(TileWater.class);
+                .registerSubtype(TileWater.class)
+                .registerSubtype(Entity.class)
+                .registerSubtype(TreeEntity.class);
+
 
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(typeFactory)

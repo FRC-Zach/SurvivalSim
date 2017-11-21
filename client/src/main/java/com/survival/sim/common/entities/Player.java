@@ -7,6 +7,8 @@ import com.survival.sim.client.util.Projection;
 import com.survival.sim.common.entities.interfaces.Locatable;
 import com.survival.sim.common.entities.interfaces.Renderable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.*;
 import java.io.IOException;
 import java.io.Serializable;
@@ -48,11 +50,21 @@ public class Player implements Locatable, Renderable {
     }
 
     public boolean movePlayer(int x, int y, World world){
+        boolean canWalk = false;
         if (world.getTile(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane()).getWalkable()){
-            setLocation(getLocation().transform(x, y));
-            return true;
+            canWalk = true;
+            List<Locatable> entities = world.getEntities(getLocation().getX() + x, getLocation().getY() + y, getLocation().getPlane());
+            for (Locatable l : entities){
+                if (l instanceof Entity){
+                    if (!((WorldObject) l).getWalkable()){
+                        canWalk = false;
+                    }
+                }
+            }
         }
-        return false;
+        if (canWalk)
+            setLocation(getLocation().transform(x, y));
+        return canWalk;
     }
 
     @Override
