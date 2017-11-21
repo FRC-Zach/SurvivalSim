@@ -37,18 +37,23 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         this.client = client;
     }
 
+    /**
+     * Channel active
+     * @param ctx current channel
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         context = ctx;
         logger.info("Connected!");
     }
 
-    @Override
-    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-
-
-    }
-
+    /**
+     * Reads message
+     * @param ctx current channel
+     * @param msg message as String
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         MessagePackage messagePackage = Json.getGson().fromJson((String) msg, MessagePackage.class);
@@ -71,6 +76,12 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
+    /***
+     * Logs exceptions.
+     * @param ctx current channel
+     * @param cause
+     * @throws Exception
+     */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         logger.error("Error during Netty execution. ", cause);
@@ -91,6 +102,10 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         return context;
     }
 
+    /***
+     * Reconnects
+     * @param ctx current channel
+     */
     private void scheduleReconnect(final ChannelHandlerContext ctx){
         EventLoop baseEventLoop = ctx.channel().eventLoop();
         if (baseEventLoop.isShutdown() || baseEventLoop.isShuttingDown()) return;
@@ -102,6 +117,9 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         logger.info("Scheduled reconnect with {} second delay.", RECONNECT_DELAY);
     }
 
+    /***
+     * Closes the channel
+     */
     public void close() {
         try {
             if (context != null) {

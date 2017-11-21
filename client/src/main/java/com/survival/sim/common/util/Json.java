@@ -12,6 +12,9 @@ public class Json {
 
     private static final Gson gson;
 
+    /***
+     * Registers sub types to GSON
+     */
     static {
         final RuntimeTypeAdapterFactory<Locatable> typeFactory = RuntimeTypeAdapterFactory
                 .of(Locatable.class, "type")

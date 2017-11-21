@@ -31,7 +31,9 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     private ChannelHandlerContext ctx;
 
-
+    /***
+     * Sends world data to the client.
+     */
     public static void sendWorld(){
         try {
             String s = Json.getGson().toJson(GameData.getWorld());
@@ -50,6 +52,9 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
+    /***
+     * Sends the entities list to the client side.
+     */
     public static void sendEntities(){
         final TypeToken<List<Locatable>> requestListTypeToken = new TypeToken<List<Locatable>>(){};
 
@@ -75,10 +80,20 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         return ctx;
     }
 
+    /**
+     * Sends a @{@link MessagePackage} to the client.
+     * @param messagePackage message package to send
+     */
     public void send(MessagePackage messagePackage){
         ctx.writeAndFlush(Json.getGson().toJson(messagePackage));
     }
 
+    /**
+     * Reads a message into a @{@link MessagePackage } via JSOn then evaluates the command.
+     * @param ctx current channel
+     * @param msg message from up stream
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         MessagePackage messagePackage = Json.getGson().fromJson((String) msg, MessagePackage.class);
@@ -92,11 +107,11 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    @Override
-    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-
-    }
-
+    /***
+     * Callback on channel active and ready to read/write sends world data to client on connect.
+     * @param ctx current channel
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         this.ctx = ctx;
@@ -109,25 +124,27 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         sendWorld();
     }
 
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 
-    }
-
+    /***
+     * Removes the channel from the channels list on disconnect.
+     * @param ctx current channel
+     * @throws Exception
+     */
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         logger.info("Channel unregistered. {}", ctx);
         Channels.remove(this);
     }
 
+    /***
+     * Logs exceptions
+     * @param ctx current channel
+     * @param cause the exception
+     * @throws Exception
+     */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         logger.error("Error during Netty execution. ", cause);
         logger.debug("Error context. {}", ctx);
-    }
-
-    @Override
-    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-
     }
 }

@@ -12,6 +12,10 @@ package com.survival.sim.server;
 public class Bootstrap {
 
 
+    /***
+     * Main method, starts server.
+     * @param args
+     */
     public static void main(String[] args) {
         NettyServer.start();
     }

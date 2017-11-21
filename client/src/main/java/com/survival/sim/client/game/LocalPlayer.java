@@ -6,6 +6,10 @@ public class LocalPlayer {
 
     private static String uid;
 
+    /**
+     * Finds the local player.
+     * @return the local player.
+     */
     public static Player getLocalPlayer() {
         if (LocalData.getWorld() != null)
             return (Player) LocalData.getWorld().getEntities().stream().filter(locatable -> locatable instanceof Player && ((Player) locatable).getUid().equals(uid)).findAny().orElse(null);

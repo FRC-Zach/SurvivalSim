@@ -10,10 +10,14 @@ public class AnimationSequence {
 
 
     public AnimationSequence(){
-        spritePaths = new ArrayList<String>();
+        spritePaths = new ArrayList<>();
         spriteIndex = 0;
     }
 
+    /***
+     *
+     * @return The path to the next sprite.
+     */
     public String getNextSprite(){
         if (spritePaths.size() == 0){
             return "";
@@ -26,10 +30,18 @@ public class AnimationSequence {
         return tmp;
     }
 
+    /***
+     *
+     * @param spr path to the next sprite,
+     */
     public void addSpritePath(String spr){
         spritePaths.add(spr);
     }
 
+    /***
+     *
+     * @param sprites paths to the next sprite,
+     */
     public void addSpritePaths(ArrayList<String> sprites){
         spritePaths.addAll(sprites);
     }

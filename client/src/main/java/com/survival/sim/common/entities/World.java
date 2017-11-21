@@ -16,6 +16,9 @@ public class World {
     private WorldObject[][][] tiles = new WorldObject[1][200][200];
     private List<Locatable> entities = new ArrayList<>();
 
+    /**
+     * Initializes the world.
+     */
     public World() {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
@@ -70,6 +73,13 @@ public class World {
         e = null;
     }
 
+    /**
+     *
+     * @param x x
+     * @param y y
+     * @param plane plane
+     * @return @{@link WorldObject} at the cords.
+     */
     public WorldObject getTile(int x, int y, int plane){
 
         if (x >= 0 && y >= 0 && plane >= 0 && x < getTiles()[0].length && plane < getTiles().length && y < getTiles()[0][0].length) {
