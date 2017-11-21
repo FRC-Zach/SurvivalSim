@@ -62,6 +62,22 @@ public class World {
                 entities.add(new RockEntity(xPos, yPos,0,false,100));
             }
         }
+        /* Create mushrooms */
+        for (int i = 0; i < 100; i++){
+            int xPos = r.nextInt(200);
+            int yPos = r.nextInt(200);
+            if(!(tiles[0][xPos][yPos] instanceof TileWater)){
+                entities.add(new MushroomEntity(xPos, yPos,0,false,100));
+            }
+        }
+        /* Create berry bushes */
+        for (int i = 0; i < 100; i++){
+            int xPos = r.nextInt(200);
+            int yPos = r.nextInt(200);
+            if(!(tiles[0][xPos][yPos] instanceof TileWater)){
+                entities.add(new BerryBushEntity(xPos, yPos,0,false,100));
+            }
+        }
         System.out.println("Done creating the world..");
     }
 

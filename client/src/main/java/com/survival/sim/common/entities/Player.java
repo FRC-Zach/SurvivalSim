@@ -35,7 +35,7 @@ public class Player implements Locatable, Renderable {
         this.thirst = 100;
         this.hunger = 100;
         this.location = new Tile(5, 5, 0);
-        animationSequence.addSpritePath("imgs/Player.png");
+        animationSequence.addSpritePath("imgs/PlayerFront.png");
     }
 
     public Player() {
