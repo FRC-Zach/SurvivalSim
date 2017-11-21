@@ -54,6 +54,14 @@ public class World {
                 entities.add(new TreeEntity(xPos, yPos, 0, false, 100));
             }
         }
+        /* Create rocks */
+        for (int i = 0; i < 250; i++){
+            int xPos = r.nextInt(200);
+            int yPos = r.nextInt(200);
+            if(!(tiles[0][xPos][yPos] instanceof TileWater)){
+                entities.add(new RockEntity(xPos, yPos,0,false,100));
+            }
+        }
         System.out.println("Done creating the world..");
     }
 

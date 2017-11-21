@@ -24,8 +24,8 @@ public class Json {
                 .registerSubtype(TileGrass.class)
                 .registerSubtype(TileWater.class)
                 .registerSubtype(Entity.class)
-                .registerSubtype(TreeEntity.class);
-
+                .registerSubtype(TreeEntity.class)
+                .registerSubtype(RockEntity.class);
 
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(typeFactory)
